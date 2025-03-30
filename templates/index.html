@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Screening System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="file"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .output img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Screening System</h1>
+        <form id="upload-form" enctype="multipart/form-data">
+            <label for="resume">Upload Your Resume (PDF or DOCX):</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.docx" required>
+            <button type="button" onclick="uploadResume()">Upload and Analyze</button>
+        </form>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function uploadResume() {
+            const formData = new FormData(document.getElementById("upload-form"));
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("output").innerHTML = html;
+            })
+            .catch(err => {
+                console.error(err);
+                alert("An error occurred while processing your request.");
+            });
+        }
+    </script>
+</body>
+</html>
