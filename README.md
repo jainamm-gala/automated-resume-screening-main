@@ -55,7 +55,7 @@ This project is an AI-powered Resume Screening application designed to help recr
 ## How to Use the Application
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Swyampatel/automated-resume-screening.git
+   git clone https://github.com/jainamm-gala/automated-resume-screening.git
    cd automated_resume_screening
    ```
 
